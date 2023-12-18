@@ -3,7 +3,9 @@
 @section('judul')
     Home
 @endsection
-
+@php
+    $no = 1;
+@endphp
 @section('content')
     <div class="card">
         <div class="card-body">
@@ -15,21 +17,35 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Nama</th>
-                            <th>Kelas</th>
-                            <th>Hobi</th>
+                            <th>No</th>
+                            <th>Product Name</th>
+                            <th>Brand</th>
+                            <th>Stock</th>
+                            <th>Buy Price</th>
+                            <th>Sale Price</th>
+                            <th>Comment</th>
                             <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($dataList as $data)
                             <tr>
+                                <td>{{ $no++ }}</td>
                                 <td>{{ $data->nama }}</td>
-                                <td>{{ $data->kelas }}</td>
-                                <td>{{ $data->hobi }}</td>
+                                <td>{{ $data->brand }}</td>
+                                <td>{{ $data->stock }}</td>
+                                <td>{{ $data->buy_price }}</td>
+                                <td>{{ $data->sale_price }}</td>
+                                <td>{{ $data->comment }}</td>
+                                <td>{{ $data->status }}</td>
                                 <td>
-                                    <a href="{{ url('edit') . '/' . $data->id }}"><button class="btn btn-primary">Edit</button></a>
-                                    <a href="{{ url('delete') . '/' . $data->id }}"><button class="btn btn-danger">Delete</button></a>
+                                    <a href="{{ url('/products/delete') . '/' . $data->products_id }}"><button
+                                            class="btn btn-sm btn-danger">Delete</button></a>
+                                    <br />
+                                    <br />
+                                    <a href="{{ url('/products/edit') . '/' . $data->products_id }}"><button
+                                            class="btn btn-sm btn-warning">Edit</button></a>
                                 </td>
                             </tr>
                         @endforeach

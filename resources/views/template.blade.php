@@ -35,11 +35,11 @@
                     </button>
                 </div>
                 <div>
-                    <a class="navbar-brand brand-logo" href="index.html">
+                    <a class="navbar-brand brand-logo" href="{{ url('/products') }}">
                         <img src="{{ asset('/template/images/logo.svg') }}" alt="logo" />
                     </a>
-                    <a class="navbar-brand brand-logo-mini" href="index.html">
-                        <img src="{{ asset('images/logo-mini.svg') }}" alt="logo" />
+                    <a class="navbar-brand brand-logo-mini" href="{{ url('/products') }}">
+                        <img src="{{ asset('/template/images/logo-mini.svg') }}" alt="logo" />
                     </a>
                 </div>
             </div>
@@ -59,9 +59,9 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/') }}">
+                        <a class="nav-link" href="{{ url('/products') }}">
                             <i class="mdi mdi-grid-large menu-icon"></i>
-                            <span class="menu-title">Dashboard</span>
+                            <span class="menu-title">Management Products</span>
                         </a>
                     </li>
                     <li class="nav-item nav-category">Form</li>
@@ -69,12 +69,12 @@
                         <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
                             aria-controls="ui-basic">
                             <i class="menu-icon mdi mdi-floor-plan"></i>
-                            <span class="menu-title">Form Request</span>
+                            <span class="menu-title">Form Add Products</span>
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="{{ url('/formreq') }}">Input Request</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{ url('/formreq') }}">Input Products</a></li>
                             </ul>
                         </div>
                     </li>

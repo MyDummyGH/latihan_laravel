@@ -15,15 +15,21 @@ use App\Http\Controllers\Home;
 |
 */
 
-//Home
-Route::get('/',[Home::class, 'index']);
+Route::group(['prefix' => 'products'], function(){
+    //Home
+    Route::get('/',[Home::class, 'index']);
+    //Form
+    //create
+    Route::get('/formreq',[Form::class, 'index']);
+    Route::post('/request',[Form::class, 'store']);
+    //update
+    Route::get('/edit/{id}', [Form::class, 'edit']);
+    Route::post('/editdata/{id}',[Form::class, 'update']);
+    //delete
+    Route::get('/delete/{id}',[Form::class, 'destroy']);
+});
 
-//Form
-//create
-Route::get('/formreq',[Form::class, 'index']);
-Route::post('/request',[Form::class, 'store']);
-//update
-Route::get('/edit/{id}', [Form::class, 'edit']);
-Route::post('/editdata/{id}',[Form::class, 'update']);
-//delete
-Route::get('/delete/{id}',[Form::class, 'destroy']);
+// Redirect for unactived / actived nav
+Route::redirect('/', '/products');
+Route::redirect('/formreq', '/products/formreq');
+

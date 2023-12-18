@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\MData;
+use App\Models\Products;
 
 class Form extends Controller
 {
@@ -33,13 +33,17 @@ class Form extends Controller
     {
         $data = [
             'nama' => $request->input('nama'),
-            'kelas' => $request->input('kelas'),
-            'hobi' => $request->input('hobi')
+            'brand' => $request->input('brand'),
+            'stock' => $request->input('stock'),
+            'status' => $request->input('status'),
+            'buy_price' => $request->input('buy_price'),
+            'sale_price' => $request->input('sale_price'),
+            'comment' => $request->input('comment')
         ];
     
-        MData::create($data);
+        Products::create($data);
     
-        return redirect('/formreq')->with('success', 'Data berhasil disimpan');
+        return redirect('/products/formreq')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -58,7 +62,7 @@ class Form extends Controller
         $data = [
             'type' => 'Edit',
         ];
-        $editData = MData::find($id);
+        $editData = Products::where('products_id', $id)->get();
     
         return view('form', compact('data', 'editData'));
     }
@@ -70,13 +74,17 @@ class Form extends Controller
     {
         $data = [
             'nama' => $request->input('nama'),
-            'kelas' => $request->input('kelas'),
-            'hobi' => $request->input('hobi')
+            'brand' => $request->input('brand'),
+            'stock' => $request->input('stock'),
+            'status' => $request->input('status'),
+            'buy_price' => $request->input('buy_price'),
+            'sale_price' => $request->input('sale_price'),
+            'comment' => $request->input('comment')
         ];
     
-        MData::find($id)->create($data);
+        Products::where('products_id', $id)->update($data);
     
-        return redirect('/')->with('success', 'Data berhasil disimpan');
+        return redirect('/products')->with('success', 'Data berhasil diupdate');
     }
 
     /**
@@ -84,7 +92,7 @@ class Form extends Controller
      */
     public function destroy(string $id)
     {
-        MData::find($id)->delete();
-        return redirect('/')->with('success', 'Data berhasil disimpan');
+        Products::where('products_id', $id)->delete();
+        return redirect('/products')->with('success', 'Data berhasil dihapus');
     }
 }
